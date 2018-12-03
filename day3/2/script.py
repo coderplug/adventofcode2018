@@ -1,7 +1,7 @@
 def input(filename):
-    f = open(filename, "r")
-    lines = f.read().splitlines()
-    return lines
+    with open(filename, "r", encoding="utf-8") as f_in:
+        lines = f_in.read().splitlines()
+        return lines
 
 def parse_claims(lines):
     claims = []
@@ -68,8 +68,8 @@ def is_claim_non_overlapping(claim, claim_map):
     return True
 
 def output(filename, text):
-    f = open(filename, "w")
-    f.write(text)
+    with open(filename, "w", encoding="utf-8") as f_out:
+        f_out.write(text)
 
 def main():
     lines = input("input.txt")

@@ -1,7 +1,7 @@
 def input(filename):
-    f = open(filename, "r", encoding="utf-8")
-    lines = f.read().splitlines()
-    return lines
+    with open(filename, "r", encoding="utf-8") as f_in:
+        lines = f_in.read().splitlines()
+        return lines
 
 def find_correct_box_ids(box_ids):
     box_count = len(box_ids)
@@ -32,8 +32,8 @@ def find_common_letters(box1, box2):
     return common_characters
 
 def output(filename, text):
-    f = open(filename, "w")
-    f.write(text)
+    with open(filename, "w", encoding="utf-8") as f_out:
+        f_out.write(text)
 
 def main():
     lines = input("input.txt")

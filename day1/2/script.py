@@ -1,9 +1,9 @@
 #SLOW (1 min runtime)
 
 def input(filename):
-    f = open(filename, "r", encoding="utf-8")
-    lines = f.read().splitlines()
-    return lines
+    with open(filename, "r", encoding="utf-8") as f_in:
+        lines = f_in.read().splitlines()
+        return lines
 
 def parse_to_int_list(str_list):
     int_list = []
@@ -28,8 +28,8 @@ def find_first_duplicate_frequency(operations):
     return dup_value
 
 def output(filename, text):
-    f = open(filename, "w")
-    f.write(text)
+    with open(filename, "w", encoding="utf-8") as f_out:
+        f_out.write(text)
 
 def main():
     str_lines = input("input.txt")

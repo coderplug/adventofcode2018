@@ -1,7 +1,7 @@
 def input(filename):
-    f = open(filename, "r", encoding="utf-8")
-    lines = f.read().splitlines()
-    return lines
+    with open(filename, "r", encoding="utf-8") as f_in:
+        lines = f_in.read().splitlines()
+        return lines
 
 def get_checksum(words):
     two_letter_count = 0
@@ -29,8 +29,8 @@ def checksum(two_count, three_count):
     return two_count * three_count
 
 def output(filename, text):
-    f = open(filename, "w")
-    f.write(text)
+    with open(filename, "w", encoding="utf-8") as f_out:
+        f_out.write(text)
 
 def main():
     lines = input("input.txt")
