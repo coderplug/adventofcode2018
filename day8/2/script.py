@@ -9,17 +9,28 @@ def split_to_numbers(lines):
     number_list = [int(i) for i in number_list]
     return number_list
 
-def metadata_sum(numbers):
+def find_parent_value(numbers):
     new_list = numbers[:]
     (parent, _) = get_children(new_list)
-    meta_sum = count_metadata(parent)
-    return meta_sum
+    parent_value = find_value(parent)
+    return parent_value
 
-def count_metadata(parent):
-    meta_sum = sum(parent.metadata)
-    for child in parent.children:
-        meta_sum += count_metadata(child)
-    return meta_sum
+def find_value(node):
+    value = 0
+    if node.children == []:
+        value = sum(node.metadata)
+    else:
+        for metadata in node.metadata:
+            child_index = metadata - 1
+            if child_exists(node.children, child_index):
+                value += find_value(node.children[child_index])
+    return value
+
+def child_exists(list, index):
+    list_length = len(list)
+    if list_length > index and index >= 0:
+        return True
+    return False 
 
 def get_children(num_list):
     children_count = num_list[0]
@@ -56,7 +67,7 @@ def output(filename, text):
 def main():
     lines = input("input.txt")
     numbers = split_to_numbers(lines)
-    meta_sum = metadata_sum(numbers)
-    output("output.txt", str(meta_sum))
+    parent_value = find_parent_value(numbers)
+    output("output.txt", str(parent_value))
 
 main()
